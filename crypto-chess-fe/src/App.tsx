@@ -12,6 +12,8 @@ import OnlinePlay from './components/OnlinePlay';
 function AppContent() {
   const [showAuth, setShowAuth] = React.useState(false);
   const [onlineGameId, setOnlineGameId] = React.useState<string | null>(null);
+  const [isLoading, setIsLoading] = React.useState(true);
+  const [error, setError] = React.useState<string | null>(null);
   const { user, logout } = useAuth();
 
   // Debug: Log environment variables
@@ -19,6 +21,11 @@ function AppContent() {
     console.log('App loaded!');
     console.log('REACT_APP_API_URL:', process.env.REACT_APP_API_URL);
     console.log('NODE_ENV:', process.env.NODE_ENV);
+    
+    // Simulate loading
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
   }, []);
 
   // Clear game state when user changes
@@ -49,12 +56,26 @@ function AppContent() {
 
   return (
     <div className="App">
+      {/* Debug info */}
+      <div style={{ position: 'fixed', top: 0, left: 0, background: 'red', color: 'white', padding: '5px', fontSize: '12px', zIndex: 9999 }}>
+        Debug: API_URL={process.env.REACT_APP_API_URL || 'NOT_SET'} | Loading={isLoading.toString()} | Error={error || 'none'}
+      </div>
+
       {/* Floating particles for cool effect */}
       <div className="floating-particle"></div>
       <div className="floating-particle"></div>
       <div className="floating-particle"></div>
 
-      <div className="app-layout">
+      {isLoading ? (
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', fontSize: '24px' }}>
+          Loading Crypto Chess... ⚡
+        </div>
+      ) : error ? (
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', fontSize: '24px', color: 'red' }}>
+          Error: {error}
+        </div>
+      ) : (
+        <div className="app-layout">
         {/* Left Sidebar */}
         <Sidebar onPlayOnline={handlePlayOnline} />
         
@@ -130,6 +151,7 @@ function AppContent() {
         {/* Right Panel */}
         <GamePanel />
       </div>
+      )}
       <AuthModal open={showAuth} onClose={() => setShowAuth(false)} />
     </div>
   );

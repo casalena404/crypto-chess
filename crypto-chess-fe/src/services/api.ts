@@ -1,6 +1,10 @@
 import { io, Socket } from 'socket.io-client';
 
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5001';
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'https://crypto-chess-qabf.onrender.com';
+
+// Debug: Log the API URL being used
+console.log('API Service initialized with URL:', API_BASE_URL);
+console.log('Environment variable REACT_APP_API_URL:', process.env.REACT_APP_API_URL);
 
 // API client for HTTP requests
 class ApiClient {
