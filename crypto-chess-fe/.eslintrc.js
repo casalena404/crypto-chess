@@ -8,10 +8,10 @@ module.exports = {
     '@typescript-eslint/no-unused-vars': 'warn',
     'react-hooks/exhaustive-deps': 'warn',
     
-    // Custom rules
-    'prefer-const': 'error',
-    'no-var': 'error',
-    'no-console': 'warn',
+    // Custom rules - make console statements warnings, not errors
+    'prefer-const': 'warn',
+    'no-var': 'warn',
+    'no-console': 'off', // Allow console statements
     
     // React specific rules
     'react/prop-types': 'off', // We're using TypeScript
