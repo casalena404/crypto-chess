@@ -14,6 +14,13 @@ function AppContent() {
   const [onlineGameId, setOnlineGameId] = React.useState<string | null>(null);
   const { user, logout } = useAuth();
 
+  // Debug: Log environment variables
+  React.useEffect(() => {
+    console.log('App loaded!');
+    console.log('REACT_APP_API_URL:', process.env.REACT_APP_API_URL);
+    console.log('NODE_ENV:', process.env.NODE_ENV);
+  }, []);
+
   // Clear game state when user changes
   React.useEffect(() => {
     setOnlineGameId(null);
