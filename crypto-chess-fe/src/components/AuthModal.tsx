@@ -79,14 +79,18 @@ const AuthModal: React.FC<AuthModalProps> = ({ open, onClose }) => {
     <div 
       className="auth-backdrop" 
       onClick={handleClose}
+      onKeyDown={(e) => e.key === 'Escape' && handleClose()}
       role="dialog"
       aria-modal="true"
       aria-labelledby="auth-modal-title"
+      tabIndex={-1}
     >
       <div 
         className="auth-modal" 
         onClick={(e) => e.stopPropagation()}
+        onKeyDown={(e) => e.key === 'Escape' && handleClose()}
         role="document"
+        tabIndex={-1}
       >
         <div className="auth-header">
           <h3 id="auth-modal-title">

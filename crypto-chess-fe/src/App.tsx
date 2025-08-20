@@ -13,7 +13,6 @@ function AppContent() {
   const [showAuth, setShowAuth] = React.useState(false);
   const [onlineGameId, setOnlineGameId] = React.useState<string | null>(null);
   const [isLoading, setIsLoading] = React.useState(true);
-  const [error, setError] = React.useState<string | null>(null);
   const { user, logout } = useAuth();
 
   // Debug: Log environment variables
@@ -58,7 +57,7 @@ function AppContent() {
     <div className="App">
       {/* Debug info */}
       <div style={{ position: 'fixed', top: 0, left: 0, background: 'red', color: 'white', padding: '5px', fontSize: '12px', zIndex: 9999 }}>
-        Debug: API_URL={process.env.REACT_APP_API_URL || 'NOT_SET'} | Loading={isLoading.toString()} | Error={error || 'none'}
+        Debug: API_URL={process.env.REACT_APP_API_URL || 'NOT_SET'} | Loading={isLoading.toString()}
       </div>
 
       {/* Floating particles for cool effect */}
@@ -69,10 +68,6 @@ function AppContent() {
       {isLoading ? (
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', fontSize: '24px' }}>
           Loading Crypto Chess... ⚡
-        </div>
-      ) : error ? (
-        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', fontSize: '24px', color: 'red' }}>
-          Error: {error}
         </div>
       ) : (
         <div className="app-layout">
