@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#3b82f6" />
+    <meta
+      name="description"
+      content="Play chess with cryptocurrency-themed pieces! A modern chess game featuring light/dark mode and sound effects."
+    />
+    <meta name="keywords" content="chess, cryptocurrency, crypto, game, blockchain, bitcoin, ethereum" />
+    <meta name="author" content="Crypto Chess Team" />
+    <meta name="robots" content="index, follow" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Crypto Chess" />
+    <meta property="og:description" content="Play chess with cryptocurrency-themed pieces!" />
+    <meta property="og:image" content="%PUBLIC_URL%/logo512.png" />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:title" content="Crypto Chess" />
+    <meta property="twitter:description" content="Play chess with cryptocurrency-themed pieces!" />
+    <meta property="twitter:image" content="%PUBLIC_URL%/logo512.png" />
+    
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    
+    <title>Crypto Chess - Play Chess with Crypto Icons</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    
+    <!-- Service Worker Registration -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        const isLocalhost = /localhost|127\.(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)/.test(location.hostname);
+        if (isLocalhost) {
+          // In development: aggressively unregister any existing SW and clear caches
+          navigator.serviceWorker.getRegistrations().then((regs) => regs.forEach((r) => r.unregister()));
+          if (window.caches && caches.keys) {
+            caches.keys().then((keys) => keys.forEach((k) => caches.delete(k)));
+          }
+        } else {
+          // In production: register our SW
+          window.addEventListener('load', () => {
+            navigator.serviceWorker
+              .register('/sw.js')
+              .then((registration) => {
+                console.log('SW registered: ', registration);
+              })
+              .catch((registrationError) => {
+                console.log('SW registration failed: ', registrationError);
+              });
+          });
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,178 @@
+.chess-square {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  user-select: none;
+  overflow: hidden;
+}
+
+.chess-square::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.chess-square:hover::before {
+  opacity: 1;
+}
+
+.chess-square.light {
+  background: linear-gradient(135deg, #f0d9b5, #e6cfa0);
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.05);
+}
+
+.chess-square.dark {
+  background: linear-gradient(135deg, #b58863, #a67c5b);
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.chess-square:hover {
+  transform: translateZ(0) scale(1.02);
+  box-shadow: inset 0 0 18px rgba(0, 0, 0, 0.12);
+  z-index: 10;
+}
+
+.chess-square.last-move {
+  box-shadow: inset 0 0 0 3px rgba(34, 197, 94, 0.95);
+  border-radius: 6px;
+}
+
+.chess-square.in-check {
+  animation: checkBlink 1s infinite;
+}
+
+@keyframes checkBlink {
+  0%, 100% { background-color: rgba(239, 68, 68, 0.45); }
+  50% { background-color: rgba(239, 68, 68, 0.2); }
+}
+
+.chess-square.selected {
+  background: rgba(34, 197, 94, 0.15) !important;
+  box-shadow: inset 0 0 0 3px rgba(34, 197, 94, 0.95);
+  border-radius: 6px;
+  transform: none;
+  z-index: 20;
+}
+
+@keyframes selectedPulse {
+  0%, 100% { box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.3), 0 0 20px rgba(245, 87, 108, 0.5); }
+  50% { box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.3), 0 0 30px rgba(245, 87, 108, 0.8); }
+}
+
+.chess-square.highlighted {
+  background: rgba(59, 130, 246, 0.10) !important;
+  box-shadow: inset 0 0 0 2px rgba(59, 130, 246, 0.6);
+  border-radius: 6px;
+  transform: none;
+  z-index: 15;
+}
+
+.chess-square.highlighted:hover {
+  opacity: 1;
+  transform: scale(1.08);
+}
+
+.legal-dot {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background: rgba(59, 130, 246, 0.6);
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+  z-index: 4;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.legal-dot.capture {
+  width: 26px;
+  height: 26px;
+  border: 3px solid rgba(59, 130, 246, 0.85);
+  background: transparent;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.piece {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  z-index: 5;
+}
+
+.piece svg {
+  filter: drop-shadow(3px 3px 6px rgba(0, 0, 0, 0.4));
+  transition: all 0.3s ease;
+}
+
+.chess-square:hover .piece svg {
+  filter: drop-shadow(4px 4px 8px rgba(0, 0, 0, 0.5));
+  transform: scale(1.1);
+}
+
+.chess-square.selected .piece svg {
+  filter: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.6));
+  animation: pieceGlow 2s infinite alternate;
+}
+
+@keyframes pieceGlow {
+  0% { filter: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.6)); }
+  100% { filter: drop-shadow(5px 5px 15px rgba(245, 87, 108, 0.8)); }
+}
+
+.square-label {
+  position: absolute;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-color);
+  opacity: 0.8;
+  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+  transition: all 0.3s ease;
+  z-index: 25;
+}
+
+.square-label.label-file { bottom: 4px; right: 4px; }
+.square-label.label-rank { top: 4px; left: 4px; }
+
+.chess-square:hover .square-label {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .piece svg {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .square-label {
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .piece svg {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .square-label {
+    font-size: 0.7rem;
+  }
+}

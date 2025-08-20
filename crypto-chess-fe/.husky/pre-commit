@@ -1,0 +1,11 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+# Run linting
+npm run lint
+
+# Run tests
+npm test -- --watchAll=false
+
+# Run build check
+npm run build

@@ -1,0 +1,114 @@
+.online-game { display: grid; gap: 10px; }
+.online-top { text-align: center; color: var(--text-secondary); font-size: .9rem; }
+
+.loading-game {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 40px;
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #3498db;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Game Result Styles */
+.game-result {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  width: 100%;
+}
+
+.result-header {
+  margin-bottom: 24px;
+}
+
+.result-header h2 {
+  font-size: 32px;
+  font-weight: 700;
+  color: #2d3748;
+  margin: 0 0 16px 0;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.result-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+}
+
+.result-message {
+  font-size: 18px;
+  color: #4a5568;
+  margin-bottom: 24px;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+.winner-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 32px;
+  padding: 16px 24px;
+  background: rgba(56, 161, 105, 0.1);
+  border-radius: 12px;
+  border: 1px solid rgba(56, 161, 105, 0.2);
+}
+
+.winner-label {
+  font-size: 14px;
+  color: #718096;
+  font-weight: 500;
+}
+
+.winner-name {
+  font-size: 16px;
+  color: #38a169;
+  font-weight: 600;
+}
+
+.result-actions {
+  margin-top: 16px;
+}
+
+.new-game-btn {
+  padding: 16px 32px;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 24px rgba(102, 126, 234, 0.3);
+}
+
+.new-game-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(102, 126, 234, 0.4);
+}
+
