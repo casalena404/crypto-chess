@@ -1,2 +1,5 @@
 # Netlify redirects for React Router
+# Don't redirect static assets
+/static/* /static/:splat 200
+# Redirect all other routes to index.html for React Router
 /*    /index.html   200
