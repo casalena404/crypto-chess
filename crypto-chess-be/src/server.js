@@ -12,13 +12,22 @@ const app = express();
 const server = http.createServer(app);
 const io = socketIo(server, {
   cors: {
-    origin: process.env.FRONTEND_URL || "http://localhost:3000",
+    origin: [
+      process.env.FRONTEND_URL || "http://localhost:3000",
+      "https://symphonious-meringue-11e7ff.netlify.app"
+    ],
     methods: ["GET", "POST"]
   }
 });
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: [
+    process.env.FRONTEND_URL || "http://localhost:3000",
+    "https://symphonious-meringue-11e7ff.netlify.app"
+  ],
+  credentials: true
+}));
 app.use(express.json());
 
 // Routes
